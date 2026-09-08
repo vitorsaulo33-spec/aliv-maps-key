@@ -183,15 +183,29 @@ read -r -p "  Código do painel: " CODIGO
 
 if [[ -n "${CODIGO// /}" ]]; then
   CODIGO_LIMPO=$(echo "$CODIGO" | tr -d '[:space:]' | tr '[:lower:]' '[:upper:]')
-  RESP=$(curl -s -m 25 -X POST "${PAINEL}/api/public/google-key/pair" \
+  # -w guarda o HTTP status: sem ele, qualquer falha virava o mesmo aviso
+  # genérico e ninguém sabia se era código errado, painel fora do ar ou
+  # endereço errado (foi o que aconteceu no 1º teste — 404 mudo).
+  RESP=$(curl -s -m 25 -w $'\n%{http_code}' -X POST "${PAINEL}/api/public/google-key/pair" \
          -H "Content-Type: application/json" \
          -d "{\"code\":\"${CODIGO_LIMPO}\",\"key\":\"${CHAVE}\"}" 2>/dev/null)
-  if echo "$RESP" | grep -q '"success": *true'; then
+  HTTP=$(echo "$RESP" | tail -1)
+  CORPO=$(echo "$RESP" | sed '$d')
+  MSG=$(echo "$CORPO" | sed -n 's/.*"message": *"\([^"]*\)".*/\1/p')
+
+  if echo "$CORPO" | grep -q '"success": *true'; then
     ok "Pronto! A chave já está ativa na sua loja — não precisa fazer mais nada."
   else
-    MSG=$(echo "$RESP" | sed -n 's/.*"message": *"\([^"]*\)".*/\1/p')
-    warn "Não consegui entregar a chave automaticamente${MSG:+: $MSG}"
-    echo "  Sem problema: copie a chave acima e cole no painel em"
+    case "$HTTP" in
+      404) warn "O código não foi reconhecido pelo painel."
+           echo "  • O código vale 30 minutos e serve uma vez só — gere outro no painel."
+           echo "  • Confira também se você gerou o código no mesmo endereço: ${PAINEL}" ;;
+      429) warn "Muitas tentativas seguidas. Espere alguns minutos e tente de novo." ;;
+      000) warn "Não consegui falar com o painel (${PAINEL}) — sem resposta." ;;
+      *)   warn "Não consegui entregar a chave (erro ${HTTP})${MSG:+: $MSG}" ;;
+    esac
+    echo
+    echo "  Sem problema — a chave está pronta acima. Copie e cole no painel em"
     echo "  Configurações → Traqueamento → Google Maps API."
   fi
 else
