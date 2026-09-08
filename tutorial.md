@@ -2,59 +2,60 @@
 
 <walkthrough-tutorial-duration duration="5"></walkthrough-tutorial-duration>
 
-## O que vamos fazer aqui
+## Antes de tudo: rode o comando
 
-O ALIV Hub usa o Google Maps para **calcular a distância da entrega** e cobrar
-o frete certo. Sem essa chave, o cliente não consegue fechar o pedido no seu
-app — ele trava na tela do endereço.
+Nada acontece sozinho aqui. **Você precisa rodar um comando no terminal** (a
+tela preta embaixo). É o único comando de todo o processo.
 
-Esta chave fica **na sua conta Google**, no seu nome. A ALIV não tem acesso ao
-seu cartão nem cobra nada por isso: você paga direto ao Google, e o Google tem
-uma cota mensal gratuita que cobre a maioria das pizzarias.
-
-São **3 cliques**. Clique em **Próximo** para começar.
-
-## Passo 1 — Rodar o script
-
-Clique no botão abaixo. Ele vai colar o comando no terminal (a tela preta do
-lado direito). Depois é só apertar **Enter**.
+Clique no ícone de copiar do quadro abaixo — ele cola o comando no terminal.
+Depois **aperte ENTER**:
 
 ```bash
 bash setup.sh
 ```
 
-<walkthrough-editor-open-file filePath="setup.sh">
-    Ver o que o script faz (opcional)
-</walkthrough-editor-open-file>
+Se o Google pedir autorização (**Authorize**), pode aceitar: é ele confirmando
+que você permite criar a chave na sua conta.
 
-Na primeira vez, o Google vai pedir uma autorização (**Authorize**) — pode
-aceitar: é ele confirmando que você deixa o script criar as coisas na sua conta.
+⚠️ **Só clique em "Próximo" depois que o comando estiver rodando.**
 
-Clique em **Próximo** enquanto ele roda.
+## O que o assistente está fazendo
 
-## Passo 2 — Se pedir o cartão
+Enquanto ele roda, o que está acontecendo:
 
-Se aparecer a mensagem **"Você ainda não tem uma conta de faturamento"**, é o
-único passo manual — o Google não deixa nenhum script cadastrar cartão.
+1. criando um projeto no Google Cloud **da sua conta**
+2. conferindo se o faturamento está ligado
+3. ativando as APIs do mapa
+4. criando a sua chave, já configurada
 
-1. Abra: [console.cloud.google.com/billing/create](https://console.cloud.google.com/billing/create)
+O ALIV Hub usa essa chave para **calcular a distância da entrega**. Sem ela, o
+cliente trava na tela do endereço e não fecha o pedido.
+
+A chave é sua, na sua conta. A ALIV não vê seu cartão nem cobra por isso.
+
+## Se pedir o cartão
+
+Se aparecer **"Você ainda não tem uma conta de faturamento"**, esse é o único
+passo manual — o Google não deixa nenhum script cadastrar cartão.
+
+1. Abra [console.cloud.google.com/billing/create](https://console.cloud.google.com/billing/create)
 2. Cadastre seu cartão (o Google costuma dar crédito grátis de teste)
-3. Volte a esta janela e rode de novo:
+3. Volte aqui e rode de novo:
 
 ```bash
 bash setup.sh
 ```
 
-Se **não** apareceu essa mensagem, pule este passo — está tudo certo.
+Se **não** apareceu essa mensagem, ignore este passo.
 
-## Passo 3 — Levar a chave para o ALIV Hub
+## Levar a chave para o ALIV Hub
 
-Quando terminar, o script mostra a sua chave numa caixa verde.
+Quando terminar, a sua chave aparece numa **caixa verde** no terminal.
 
-**Jeito automático (recomendado):** no ALIV Hub, vá em
-**Configurações → Traqueamento** e clique em **"Conectar chave do Google"**.
-Vai aparecer um código de 6 letras. Cole esse código no terminal quando o
-script pedir — a chave entra sozinha na sua loja, já testada.
+**Jeito fácil:** no ALIV Hub, vá em **Configurações → Traqueamento** e clique
+em **"Conectar chave do Google"**. Aparece um código de 6 letras. Cole esse
+código no terminal quando o assistente pedir — a chave entra sozinha na sua
+loja, já testada.
 
 **Jeito manual:** copie a chave da caixa verde e cole em
 **Configurações → Traqueamento → Google Maps API**.
@@ -63,13 +64,11 @@ script pedir — a chave entra sozinha na sua loja, já testada.
 
 <walkthrough-conclusion-trophy></walkthrough-conclusion-trophy>
 
-Sua chave está ativa. Duas coisas para guardar:
+Se a caixa verde apareceu com a sua chave, terminou.
 
-**Onde ver o consumo:** o script mostrou no final um link do painel de métricas
-do Google — lá você acompanha quanto está usando.
+**Não apareceu nada?** Provavelmente o comando não chegou a rodar. Volte ao
+primeiro passo, digite `bash setup.sh` no terminal e aperte ENTER.
 
-**Se um dia o mapa parar:** quase sempre é o cartão da conta Google que falhou e
-o Google desligou o faturamento. O ALIV Hub avisa no painel quando detecta isso,
-e o conserto é reativar o faturamento no Google Cloud.
-
-Qualquer dúvida, chame o suporte da ALIV.
+**Se um dia o mapa parar de funcionar:** quase sempre é o cartão da conta
+Google que falhou e o Google desligou o faturamento. O ALIV Hub avisa no painel
+quando detecta isso.

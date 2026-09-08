@@ -8,9 +8,13 @@ calcular a distância da entrega, **dentro da conta Google do próprio lojista**
 Clique no botão abaixo. Abre um terminal no seu navegador, já conectado à sua
 conta Google — não precisa instalar nada.
 
-[![Abrir no Google Cloud Shell](https://gstatic.com/cloudssh/images/open-btn.svg)](https://shell.cloud.google.com/cloudshell/editor?cloudshell_git_repo=https://github.com/vitorsaulo33-spec/aliv-maps-key&cloudshell_tutorial=tutorial.md)
+[![Abrir no Google Cloud Shell](https://gstatic.com/cloudssh/images/open-btn.svg)](https://shell.cloud.google.com/cloudshell/editor?cloudshell_git_repo=https://github.com/vitorsaulo33-spec/aliv-maps-key&cloudshell_tutorial=tutorial.md&cloudshell_print=COMECE_AQUI.txt)
 
-Um passo a passo aparece do lado do terminal. São 3 cliques.
+Um passo a passo aparece do lado do terminal.
+
+> **Importante:** nada roda sozinho. Depois que abrir, digite no terminal
+> `bash setup.sh` e aperte ENTER — o aviso com esse comando aparece impresso
+> no próprio terminal assim que a página carrega.
 
 ## O que o script faz
 

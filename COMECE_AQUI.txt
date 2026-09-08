@@ -1,0 +1,20 @@
+
+  ╔════════════════════════════════════════════════════════════════════╗
+  ║                                                                    ║
+  ║        ALIV HUB — ASSISTENTE DA CHAVE DO GOOGLE MAPS               ║
+  ║                                                                    ║
+  ╠════════════════════════════════════════════════════════════════════╣
+  ║                                                                    ║
+  ║   PARA COMEÇAR, DIGITE O COMANDO ABAIXO E APERTE ENTER:            ║
+  ║                                                                    ║
+  ║                                                                    ║
+  ║              b a s h   s e t u p . s h                             ║
+  ║                                                                    ║
+  ║                                                                    ║
+  ║   (é só copiar:  bash setup.sh  )                                  ║
+  ║                                                                    ║
+  ║   Nada acontece sozinho até você rodar esse comando.               ║
+  ║   O assistente cuida do resto e mostra sua chave no final.         ║
+  ║                                                                    ║
+  ╚════════════════════════════════════════════════════════════════════╝
+
