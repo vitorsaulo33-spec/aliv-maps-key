@@ -16,5 +16,9 @@
   ║   Nada acontece sozinho até você rodar esse comando.               ║
   ║   O assistente cuida do resto e mostra sua chave no final.         ║
   ║                                                                    ║
+  ╠════════════════════════════════════════════════════════════════════╣
+  ║   Voltou depois e apareceu "No such file or directory"?            ║
+  ║   Você está na pasta errada. Rode antes:                           ║
+  ║        cd ~/cloudshell_open/aliv-maps-key*                         ║
   ╚════════════════════════════════════════════════════════════════════╝
 

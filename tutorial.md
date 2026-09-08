@@ -69,6 +69,13 @@ Se a caixa verde apareceu com a sua chave, terminou.
 **Não apareceu nada?** Provavelmente o comando não chegou a rodar. Volte ao
 primeiro passo, digite `bash setup.sh` no terminal e aperte ENTER.
 
+**Deu "No such file or directory"?** Você abriu um terminal novo e ele começa
+na pasta errada. Rode isto antes:
+
+```bash
+cd ~/cloudshell_open/aliv-maps-key* && bash setup.sh
+```
+
 **Se um dia o mapa parar de funcionar:** quase sempre é o cartão da conta
 Google que falhou e o Google desligou o faturamento. O ALIV Hub avisa no painel
 quando detecta isso.
